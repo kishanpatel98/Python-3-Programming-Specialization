@@ -104,7 +104,7 @@ def get_sorted_recommendations(movies):
     #     #print(sorted(ratings.items(), key = lambda movie: (movie[1], movie[0]), reverse = True))
     # return [titles[0] for titles in sorted(ratings.items(), key = lambda movie: (movie[1], movie[0]), reverse = True)]
 
-    return sorted(get_related_titles(movies), key = lambda title: (get_movie_rating(get_movie_data(title)), title), reverse=True)
+    return sorted(get_related_titles(movies), key = lambda title: (get_movie_rating(get_movie_data(title)), title), reverse = True)
 
 
 
