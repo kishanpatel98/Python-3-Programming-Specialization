@@ -3,7 +3,7 @@
 Final Project of the Data Collection and Processing with Python course which is a part of the Python 3 Programming Specialization offered by University of Michigan on Coursera. More information can be found at: https://www.coursera.org/learn/data-collection-processing-python/home/welcome
 
 ## About It
-This project will take you through the process of mashing up data from two different APIs to make movie recommendations. The TasteDive API lets you provide a movie (or bands, TV shows, etc.) as a query input, and returns a set of related items. The OMDB API lets you provide a movie title as a query input and get back data about the movie, including scores from various review sites (Rotten Tomatoes, IMDB, etc.).
+This project will take you through the process using REST APIs to combine data from two different APIs to make movie recommendations. The TasteDive API lets you provide a movie (or bands, TV shows, etc.) as a query input, and returns a set of related items. The OMDB API lets you provide a movie title as a query input and get back data about the movie, including scores from various review sites (Rotten Tomatoes, IMDB, etc.).
 
 You will put those two together. You will use TasteDive to get related movies for a whole list of titles. You’ll combine the resulting lists of related movies, and sort them according to their Rotten Tomatoes scores (which will require making API calls to the OMDB API.)
 
@@ -12,17 +12,20 @@ The documentation for the API is at: https://tastedive.com/read/api
 The documentation for the API is at: https://www.omdbapi.com/
 
 ## Functions
-#### 1. def get_movies_from_tastedive(movieName, key="ExampleKey"):
-#### IMPORTANT NOTE: You will need a key to get the request for the TasteDive API. For default, I provided my personal key. Please, be careful we that.
-It should take two input parameter, a string that is the name of a movie or music artist and the API key's. The function should return the 5 TasteDive results that are associated with that string; rigth now it only get movies, not other kinds of media. It will return a python dictionary with just one key, ‘Similar’.
-#### 2. def extract_movie_titles(movieName):
-Extracts just the list of movie titles from a dictionary
-#### 3. def get_related_titles(listMovieName):
-It takes a list of movie titles as input. It gets five related movies for each from TasteDive, extracts the titles for all of them, and combines them all into a single list. Don’t include the same movie twice.
-#### 4. def get_movie_data(movieName, key="ExampleKey"):
-It takes in one parameter which is a string that should represent the title of a movie you want to search. The function should return a dictionary with information about that movie.
-#### 5. def get_movie_rating(movieNameJson):
- It takes an OMDB dictionary result for one movie and extracts the Rotten Tomatoes rating as an integer. If there is no Rotten Tomatoes rating, return 0.
-#### 6. get_sorted_recommendations(listMovieTitle):
+#### `def get_movies_from_tastedive(title):`
+Takes in the title of a movie and returns a dictionary of 5 movies and related details which are similar to the movie being queried. The 5 movies are stored under key 'Similar'.
 
-Course material can be found at: https://www.coursera.org/learn/data-collection-processing-python/home/welcome
+#### `def extract_movie_titles(info):`
+Takes in a dictionary of 5 movies and returns just movie titles.
+
+#### `def get_related_titles(movies):`
+Takes in a movie title, uses `get_movies_from_tastedive()` function to retrieve 5 movies which are similar and then returns the titles of those movies with `extract_movie_titles()` function.
+
+#### `def get_movie_data(title):`
+Takes in the title of a movie and returns a dictionary with the data of the movie.
+
+#### `def get_movie_rating(info):`
+Takes in a dictionary from `def get_movie_data():` function and extracts the Rotten Tomatoes rating from the data. Returns 0 if a rating isn't found.
+
+#### `get_sorted_recommendations(movies):`
+Takes in list of movie titles as an input. It returns a sorted list of related movie titles as output, up to five related movies for each input movie title. The movies should be sorted in descending order by their Rotten Tomatoes rating, as returned by the `get_movie_rating()` function. Ties are listed in reverse alphabetic order, so that ‘Yahşi Batı’ comes before ‘Eyyvah Eyvah’.
