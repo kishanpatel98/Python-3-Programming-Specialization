@@ -1,6 +1,3 @@
-import sys
-sys.setExecutionLimit(600000) # let this take up to 10 minutes
-
 import json
 import random
 import time
@@ -158,24 +155,24 @@ Phrase:   {}
 Guessed:  {}""".format(category, obscuredPhrase, ', '.join(sorted(guessed)))
 
 # GAME LOGIC CODE
-print('='*15)
-print('WHEEL OF PYTHON')
-print('='*15)
+print('=' * 15)
+print('WHEEL OF FORTUNE')
+print('=' * 15)
 print('')
 
-num_human = getNumberBetween('How many human players?', 0, 10)
+num_human = getNumberBetween('How many human players? ', 0, 10)
 
 # Create the human player instances
-human_players = [WOFHumanPlayer(input('Enter the name for human player #{}'.format(i+1))) for i in range(num_human)]
+human_players = [WOFHumanPlayer(input('Enter the name for human player #{} '.format(i + 1))) for i in range(num_human)]
 
-num_computer = getNumberBetween('How many computer players?', 0, 10)
+num_computer = getNumberBetween('How many computer players? ', 0, 10)
 
 # If there are computer players, ask how difficult they should be
 if num_computer >= 1:
-    difficulty = getNumberBetween('What difficulty for the computers? (1-10)', 1, 10)
+    difficulty = getNumberBetween('What difficulty for the computers? (1-10) ', 1, 10)
 
 # Create the computer player instances
-computer_players = [WOFComputerPlayer('Computer {}'.format(i+1), difficulty) for i in range(num_computer)]
+computer_players = [WOFComputerPlayer('Computer {}'.format(i + 1), difficulty) for i in range(num_computer)]
 
 players = human_players + computer_players
 
@@ -224,7 +221,7 @@ while True:
     wheelPrize = spinWheel()
 
     print('')
-    print('-'*15)
+    print('-' * 15)
     print(showBoard(category, obscurePhrase(phrase, guessed), guessed))
     print('')
     print('{} spins...'.format(player.name))
